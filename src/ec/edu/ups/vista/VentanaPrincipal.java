@@ -209,17 +209,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         crearDirectorio = JOptionPane.showInputDialog("Ingrese nombre de directorio a crear");
         //System.out.println(crearDirectorio);
         String ruta = txtRuta.getText();
-        ctrlDirectorio.crearDirectorio(crearDirectorio, ruta);
+        
         if (crearDirectorio != null && ruta != null) {
             JOptionPane.showMessageDialog(this, "Se ha creado satisfactoriamente el directorio");
-            
-        } else {
-            
-            if (txtRuta.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Ingrese una ruta para crear un nuevo directorio");
-            } else if (crearDirectorio == null) {
-                JOptionPane.showMessageDialog(this, "No se puede crear ningun directorio no se ha ingresado nada");
-            }
+            ctrlDirectorio.crearDirectorio(crearDirectorio, ruta);
+        } else if(crearDirectorio == null){
+            JOptionPane.showMessageDialog(this, "No se puede crear ningun directorio no se ha ingresado nada");
+        } else if(ruta.equals("")){
+            JOptionPane.showMessageDialog(this, "Ingrese una ruta para crear un nuevo directorio");
         }
     }//GEN-LAST:event_menuItemCrearActionPerformed
 
@@ -340,6 +337,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void menuItemRenombrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRenombrarActionPerformed
         // TODO add your handling code here:
+        String actual = jListDirectorios.getSelectedValue();
+        //System.out.println(actual );
+        String nuevo = JOptionPane.showInputDialog("Ingrese nuevo nombre del archivo: " + actual);
+        ctrlDirectorio.renombrar(actual, nuevo); 
     }//GEN-LAST:event_menuItemRenombrarActionPerformed
 
     public boolean comprobar(String ruta){

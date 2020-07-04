@@ -120,6 +120,12 @@ public class ControladorDirectorio {
     }
     
     public void renombrar(String actual, String nuevo){
-        
+        archivos = archivo.listFiles();
+        File archivoNuevo = new File(ruta + File.separator + nuevo);
+        for (File actualArchivo : archivos) {
+            if(actualArchivo.getName().equals(actual)){
+                actualArchivo.renameTo(archivoNuevo);
+            } 
+        }
     }
 }
