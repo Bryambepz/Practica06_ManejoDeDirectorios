@@ -5,10 +5,20 @@
  */
 package ec.edu.ups.controladorDirectorio;
 
+import java.io.File;
+
 /**
  *
  * @author braya
  */
 public class ControladorDirectorio {
+    private String ruta;
+    private File archivo;
+    private File[] archivos;
+
+    public ControladorDirectorio(String ruta) {
+        this.ruta = ruta;
+    }
+    
     
 }

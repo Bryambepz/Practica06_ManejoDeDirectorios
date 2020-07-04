@@ -27,21 +27,119 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        desktopPane = new javax.swing.JDesktopPane();
+        jTextField1 = new javax.swing.JTextField();
+        btnListarDi = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        openMenuItem = new javax.swing.JMenuItem();
+        saveAsMenuItem = new javax.swing.JMenuItem();
+        saveMenuItem = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestion de Directorios");
+
+        desktopPane.setName(""); // NOI18N
+        desktopPane.add(jTextField1);
+        jTextField1.setBounds(330, 60, 230, 24);
+
+        btnListarDi.setText("Listar Directorios");
+        desktopPane.add(btnListarDi);
+        btnListarDi.setBounds(190, 130, 129, 32);
+
+        jButton1.setText("Listar Archivos Ocultos");
+        desktopPane.add(jButton1);
+        jButton1.setBounds(360, 130, 163, 32);
+
+        jButton2.setText("Listar Directorios Ocultos");
+        desktopPane.add(jButton2);
+        jButton2.setBounds(560, 130, 180, 32);
+
+        jList1.setAutoscrolls(false);
+        jScrollPane1.setViewportView(jList1);
+
+        desktopPane.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 200, 380, 360);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        desktopPane.add(jScrollPane3);
+        jScrollPane3.setBounds(460, 240, 290, 260);
+
+        jLabel1.setText("Ingrese ruta");
+        desktopPane.add(jLabel1);
+        jLabel1.setBounds(230, 60, 90, 16);
+
+        jButton3.setText("Mostrar Informacion");
+        desktopPane.add(jButton3);
+        jButton3.setBounds(120, 570, 180, 32);
+
+        fileMenu.setMnemonic('f');
+        fileMenu.setText("Gestionar Directorios");
+
+        openMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        openMenuItem.setMnemonic('o');
+        openMenuItem.setText("Crear");
+        fileMenu.add(openMenuItem);
+
+        saveAsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        saveAsMenuItem.setMnemonic('a');
+        saveAsMenuItem.setText("Eliminar");
+        fileMenu.add(saveAsMenuItem);
+
+        saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        saveMenuItem.setMnemonic('s');
+        saveMenuItem.setText("Renombrar");
+        fileMenu.add(saveMenuItem);
+
+        exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.CTRL_MASK));
+        exitMenuItem.setMnemonic('x');
+        exitMenuItem.setText("Salir");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exitMenuItem);
+
+        menuBar.add(fileMenu);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +177,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnListarDi;
+    private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JMenuItem saveAsMenuItem;
+    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
+
 }
