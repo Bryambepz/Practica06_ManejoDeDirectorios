@@ -6,12 +6,12 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controladorDirectorio.ControladorDirectorio;
-import java.awt.PopupMenu;
-import java.util.ArrayList;
+import java.io.File;
+//import java.awt.PopupMenu;
+//import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author braya
@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private ControladorDirectorio ctrlDirectorio;
-    private DefaultListModel listar;
     
     /**
      * Creates new form VentanaPrincipal
@@ -27,15 +26,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         ctrlDirectorio = new ControladorDirectorio(txtRuta.getText());
-        listar = new DefaultListModel();
+        
     }
 
-    private DefaultListModel listaDirectorios(){
-        ArrayList lista = (ArrayList) ctrlDirectorio.listarArchivos(txtRuta.getText());
-        for (Object archivos : lista) {
-            
+    private void mostrarLista(List<String> rutaL){
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
+        for (String directorios : rutaL) {
+            modelo.addElement(directorios);
         }
-        return listar;
+        jListDirectorios.setModel(modelo);
     }
     
     /**
@@ -176,37 +176,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String crearDirectorio = "";
         crearDirectorio = JOptionPane.showInputDialog("Ingrese nombre de directorio a crear");
         //System.out.println(crearDirectorio);
-        ctrlDirectorio.crearDirectorio(crearDirectorio);
-        if (!crearDirectorio.equals("") && !txtRuta.getText().equals("")) {
+        String ruta = txtRuta.getText();
+        ctrlDirectorio.crearDirectorio(crearDirectorio, ruta);
+        if (crearDirectorio != null && ruta != null) {
             JOptionPane.showMessageDialog(this, "Se ha creado satisfactoriamente el directorio");
+            
         } else {
             
             if (txtRuta.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Ingrese una ruta para crear un nuevo directorio");
-            } else if (crearDirectorio.equals("")) {
+            } else if (crearDirectorio == null) {
                 JOptionPane.showMessageDialog(this, "No se puede crear ningun directorio no se ha ingresado nada");
-            } else{
-                JOptionPane.showMessageDialog(this, "Ingrese una ruta y un nombre de directorio");
             }
         }
     }//GEN-LAST:event_menuItemCrearActionPerformed
 
     private void btnListarDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDiActionPerformed
         // TODO add your handling code here:
+        limpiarLista();
         String ruta = txtRuta.getText();
+        
         if(ruta.equals("")){
             JOptionPane.showMessageDialog(this, "Ingrese una ruta");
         }else{
-            ctrlDirectorio.listarArchivos(txtRuta.getText());
-            
-            //listaDirectorios();
+            if(comprobar(ruta)){
+                List<String> lista = ctrlDirectorio.listarDirectorios(ruta);
+                if (lista == null) {
+                    JOptionPane.showMessageDialog(this, "No existe esta ruta");
+                } else {
+                    if (ruta.equals("")) {
+                        JOptionPane.showMessageDialog(this, "Ingrese una ruta");
+                    } else {
+                        //ctrlDirectorio.listarDirectorios(txtRuta.getText());
+                        List<String> listaD = ctrlDirectorio.listarDirectorios(ruta);
+                        mostrarLista(listaD);
+                        //listaDirectorios();
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "No existe ese directorio");
+            }
         }
     }//GEN-LAST:event_btnListarDiActionPerformed
 
-//    public void listarArchivos() {
-//        ctrlDirectorio.listarArchivos(txtRuta.getText());
-//    }
-
+    public boolean comprobar(String ruta){
+        String r = txtRuta.getText();
+        File comprobacion = new File(r);
+        if(comprobacion.exists()){
+            return true;
+        }else{  
+            //
+            return false;
+        }
+    }
+    
+    public void limpiarLista(){
+        DefaultListModel model = new DefaultListModel();
+        model.clear();
+    }
     /**
      * @param args the command line arguments
      */

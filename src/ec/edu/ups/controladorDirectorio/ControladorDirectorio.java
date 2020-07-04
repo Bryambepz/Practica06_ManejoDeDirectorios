@@ -22,26 +22,28 @@ public class ControladorDirectorio {
         this.ruta = ruta;
     }
     
-    public void crearDirectorio(String nombre){
+    public void crearDirectorio(String nombre, String ruta){
         archivo = new File(ruta + File.separator + nombre);
-        archivo.mkdir();
+        if (archivo.exists() == false) {
+            archivo.mkdir();
+        }
     }
     
-    public List<String> listarArchivos(String ruta){
+    public List<String> listarDirectorios(String ruta){
         List<String> listar = new ArrayList<>();
-        for (String directorio : listar) {
-            listar.add(directorio);
+        listar.clear();
+        archivo = new File(ruta);
+        archivos = archivo.listFiles();
+        for (File directorio : archivos) {
+            if(!directorio.isHidden()){
+                listar.add(directorio.getName());
+            }
         }
         return listar;
-    }
+    } 
     
-//    public String listarArchivos(String ruta){
+    
+//    public List<String> listarDirectorios(){
 //        
-//        for (File archivo1 : archivos) {
-//            if(archivo1.isDirectory()){
-//                return archivo1.getAbsolutePath();
-//            }
-//        }
-//        return null;
 //    }
 }
