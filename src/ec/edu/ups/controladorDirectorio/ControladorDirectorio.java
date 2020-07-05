@@ -6,6 +6,7 @@
 package ec.edu.ups.controladorDirectorio;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,10 +26,12 @@ public class ControladorDirectorio {
         this.ruta = ruta;
     }
 
-    public void crearDirectorio(String nombre, String ruta) {
+    public void crearDirectorio(String nombre, String ruta) throws IOException {
         archivo = new File(ruta + File.separator + nombre);
-        if (archivo.exists() == false) {
+        if (archivo.exists() == false && archivo.isDirectory()) {
             archivo.mkdir();
+        }else{
+            archivo.createNewFile();
         }
     }
 
@@ -43,6 +46,19 @@ public class ControladorDirectorio {
             }
         }
         return listarDirectorio;
+    }
+    
+    public List<String> listarArchivos(String ruta) {
+        List<String> listarArchivos = new ArrayList<>();
+        listarArchivos.clear();
+        archivo = new File(ruta);
+        archivos = archivo.listFiles();
+        for (File directorio : archivos) {
+            if (!directorio.isHidden()) {
+                listarArchivos.add(directorio.getName());
+            }
+        }
+        return listarArchivos;
     }
 
     public List<String> listarArchivosOcultos(String ruta) {

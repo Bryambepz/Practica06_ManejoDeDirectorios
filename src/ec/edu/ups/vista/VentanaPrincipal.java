@@ -7,9 +7,12 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controladorDirectorio.ControladorDirectorio;
 import java.io.File;
+import java.io.IOException;
 //import java.awt.PopupMenu;
 //import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 /**
@@ -212,7 +215,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         if (crearDirectorio != null && ruta != null) {
             JOptionPane.showMessageDialog(this, "Se ha creado satisfactoriamente el directorio");
-            ctrlDirectorio.crearDirectorio(crearDirectorio, ruta);
+            try {
+                ctrlDirectorio.crearDirectorio(crearDirectorio, ruta);
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if(crearDirectorio == null){
             JOptionPane.showMessageDialog(this, "No se puede crear ningun directorio no se ha ingresado nada");
         } else if(ruta.equals("")){
