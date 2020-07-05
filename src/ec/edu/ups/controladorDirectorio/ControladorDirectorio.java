@@ -95,7 +95,7 @@ public class ControladorDirectorio {
                 String path = "Path absoluto: " + inf.getAbsolutePath();
                 informacionDirectorio = informacionDirectorio.concat(path) + "\n";
                 long tamaño = + inf.length();
-                String tamañoArchivo = "Tamaño del archivo: " + String.valueOf(tamaño) + "\n";
+                String tamañoArchivo = "Tamaño del archivo: " + String.valueOf(tamaño) + " bytes\n";
                 informacionDirectorio = informacionDirectorio.concat(tamañoArchivo);
                 String sPermisoRead = "Permisos de lectura: " + "Tiene acceso de lectura\n";
                 String nPermisoRead = "Permisos de lectura: " + "No tiene acceso de lectura\n";
